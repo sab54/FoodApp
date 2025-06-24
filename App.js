@@ -8,11 +8,16 @@ const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Restaurants" component={HomeScreen} />
-        <Stack.Screen name="Menu" component={MenuScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+<NavigationContainer>
+  <Stack.Navigator
+    screenOptions={{
+      headerTitleAlign: 'center',
+    }}
+  >
+    <Stack.Screen name="Restaurants" component={HomeScreen} />
+    <Stack.Screen name="Menu" component={MenuScreen} options={{ headerBackTitle: 'Restaurants'}} />
+  </Stack.Navigator>
+</NavigationContainer>
+
   );
 }

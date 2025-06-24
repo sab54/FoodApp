@@ -1,75 +1,70 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Cell } from 'react-native-tableview-simple';
 
 export default function HomeScreenCell(props) {
   return (
-    <View style={styles.wrapper}>
-      <Cell
-        onPress={props.action}
-        cellStyle="Custom"
-        highlightUnderlayColor="#ccc"
-        style={styles.cell}
-      >
-        <View style={styles.imageContainer}>
+    <Cell
+      {...props}
+      height={290}
+      backgroundColor="transparent"
+      highlightUnderlayColor="#ccc"
+      onPress={props.action}
+      cellContentView={
+        <View style={styles.container}>
           <Image source={props.imgUri} style={styles.image} />
           <View style={styles.etaBox}>
             <Text style={styles.etaText}>{props.eta}{"\n"}mins</Text>
           </View>
-        </View>
-        <View style={styles.textBlock}>
           <Text style={styles.title}>{props.title}</Text>
           <Text style={styles.subtitle}>{props.tagline}</Text>
         </View>
-      </Cell>
-    </View>
+      }
+    />
   );
 }
 
 const styles = StyleSheet.create({
-  wrapper: {
-  marginTop: 12,
-  marginBottom: 16,
-
-},
-  cell: {
+  container: {
+    width: '100%',
     height: 290,
     backgroundColor: 'transparent',
   },
-  imageContainer: {
-    position: 'relative',
-  },
   image: {
-    height: 200, // Reduced so there’s room for text
     width: '100%',
+    height: 200,
     borderRadius: 8,
   },
   etaBox: {
     position: 'absolute',
-    bottom: -30,
-    right: 10,
-    backgroundColor: 'black',
-    borderRadius: 20,
-    paddingVertical: 5,
-    paddingHorizontal: 15,
+    bottom: 60,
+    right: 15,
+    backgroundColor: '#fff',
+    borderRadius: 30,
+    paddingHorizontal: 27,
+    paddingVertical: 10,
+    zIndex: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 5,
   },
   etaText: {
-    fontWeight: 'bold',
-    color:'white',
-    fontSize: 16,
+    fontWeight: '900',
+    fontSize: 17,
     textAlign: 'center',
   },
-  textBlock: {
-    paddingTop: 8,
-    paddingHorizontal: 10,
-  },
   title: {
+    fontSize: 20,
+    fontWeight: '800',
     marginTop: 8,
-    fontSize: 18,
-    fontWeight: 'bold',
+    marginLeft: 10,
   },
   subtitle: {
-    fontSize: 14,
-    color: '#aaa',
+    fontSize: 13,
+    color: '#666',
+    marginTop: 10,
+    marginLeft: 10,
   },
 });
