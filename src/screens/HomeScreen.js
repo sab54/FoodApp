@@ -1,17 +1,30 @@
+// Import core React functionality
 import React from 'react';
+
+// Import essential components from React Native
 import { ScrollView, View } from 'react-native';
+
+// Import table view and section components for iOS-style layout
 import { TableView, Section } from 'react-native-tableview-simple';
+
+// Import reusable custom cell component for restaurant listing
 import HomeScreenCell from '../components/HomeScreenCell';
 
+// Define the HomeScreen component, which serves as the restaurant listing page
 export default function HomeScreen({ navigation }) {
   return (
+    // ScrollView enables vertical scrolling and sets background color
     <ScrollView style={{ flex: 1, backgroundColor: '#F0F0F0' }}>
+      {/* TableView creates a grouped iOS-style list structure */}
       <TableView>
+        {/* Section groups together multiple cells; header is empty for a cleaner look */}
         <Section
           header=""
-          hideSeparator={true}
-          separatorTintColor="#ccc"
+          hideSeparator={true} // Hide default separators for visual polish
+          separatorTintColor="#ccc" // Optional custom separator color (if shown)
         >
+
+          {/* Render a restaurant cell for Joe's Gelato */}
           <HomeScreenCell
             title="Joe's Gelato"
             tagline="Desert, Ice cream, £££"
@@ -27,24 +40,25 @@ export default function HomeScreen({ navigation }) {
                       {
                         title: 'Vanilla',
                         image: require('../../src/assets/images/vanilla.jpeg'),
-                        inStock:true,
+                        inStock: true,
                         type: 'veg',
                         price: 2.00,
                       },
                       {
                         title: 'Chocolate',
                         image: require('../../src/assets/images/chocolate.jpeg'),
-                        inStock:true,
+                        inStock: true,
                         type: 'veg',
                         price: 2.00,
                       },
                       {
                         title: 'Mint',
                         image: require('../../src/assets/images/mint.jpeg'),
-                        inStock:true,
+                        inStock: true,
                         type: 'veg',
                         price: 2.00,
-                      }],
+                      },
+                    ],
                   },
                   {
                     title: 'Coffee',
@@ -52,38 +66,40 @@ export default function HomeScreen({ navigation }) {
                       {
                         title: 'Flat white',
                         image: require('../../src/assets/images/flat-white.jpeg'),
-                        inStock:true,
+                        inStock: true,
                         type: 'veg',
                         price: 1.98,
                       },
                       {
                         title: 'Latte',
                         image: require('../../src/assets/images/latte.jpeg'),
-                        inStock:true,
+                        inStock: true,
                         type: 'veg',
                         price: 1.75,
                       },
                       {
                         title: 'Caffe Americano',
                         image: require('../../src/assets/images/caffe-americano.jpeg'),
-                        inStock:false,
+                        inStock: false,
                         type: 'veg',
                         price: 1.85,
-                      }],
+                      },
+                    ],
                   },
                   {
                     title: 'Add-ons',
                     contents: [
-                      { title: 'Choco Chips',
+                      {
+                        title: 'Choco Chips',
                         image: require('../../src/assets/images/choco-chips.jpeg'),
-                        inStock:false,
+                        inStock: false,
                         type: 'veg',
                         price: 2.00,
                       },
                       {
                         title: 'Honey Drizzle',
                         image: require('../../src/assets/images/honey-drizzle.jpeg'),
-                        inStock:true,
+                        inStock: true,
                         type: 'veg',
                         price: 2.00,
                       },
@@ -93,6 +109,8 @@ export default function HomeScreen({ navigation }) {
               })
             }
           />
+
+          {/* Render a restaurant cell for Joe's Diner */}
           <HomeScreenCell
             title="Joe's Diner"
             tagline="American, burgers, ££"
@@ -108,14 +126,14 @@ export default function HomeScreen({ navigation }) {
                       {
                         title: 'Mushroom Risotto',
                         image: require('../../src/assets/images/mushroom.jpeg'),
-                        inStock:true,
+                        inStock: true,
                         type: 'veg',
                         price: 7.20,
                       },
                       {
                         title: 'Spaghetti Bolognese',
                         image: require('../../src/assets/images/spagetti.jpeg'),
-                        inStock:true,
+                        inStock: true,
                         type: 'nonveg',
                         price: 8.50,
                       },
@@ -127,14 +145,14 @@ export default function HomeScreen({ navigation }) {
                       {
                         title: 'Classic Burger',
                         image: require('../../src/assets/images/classic-burger.jpeg'),
-                        inStock:true,
+                        inStock: true,
                         type: 'veg',
                         price: 2.00,
                       },
                       {
                         title: 'Veggie Burger',
                         image: require('../../src/assets/images/veg-burger.jpeg'),
-                        inStock:false,
+                        inStock: false,
                         type: 'veg',
                         price: 2.60,
                       },
@@ -150,7 +168,8 @@ export default function HomeScreen({ navigation }) {
                         type: 'veg',
                         price: 0.80,
                       },
-                      { title: 'Chicken Nuggests',
+                      {
+                        title: 'Chicken Nuggests',
                         image: require('../../src/assets/images/chicken-nuggets.jpeg'),
                         inStock: true,
                         type: 'nonveg',
@@ -162,6 +181,8 @@ export default function HomeScreen({ navigation }) {
               })
             }
           />
+
+          {/* Render a restaurant cell for Luca’s Pizzeria */}
           <HomeScreenCell
             title="Luca’s Pizzeria"
             tagline="Pizza, Italian, £10"
@@ -177,14 +198,14 @@ export default function HomeScreen({ navigation }) {
                       {
                         title: 'Margherita Pizza',
                         image: require('../../src/assets/images/margherita-pizza.jpeg'),
-                        inStock:true,
+                        inStock: true,
                         type: 'veg',
                         price: 10.00,
                       },
                       {
                         title: 'Pepperoni Pizza',
                         image: require('../../src/assets/images/peporoni-pizza.jpeg'),
-                        inStock:true,
+                        inStock: true,
                         type: 'nonveg',
                         price: 12.00,
                       },
@@ -226,7 +247,8 @@ export default function HomeScreen({ navigation }) {
                         type: 'veg',
                         price: 1.25,
                       },
-                      { title: 'Salad',
+                      {
+                        title: 'Salad',
                         image: require('../../src/assets/images/salad.jpeg'),
                         inStock: true,
                         type: 'veg',
@@ -238,6 +260,7 @@ export default function HomeScreen({ navigation }) {
               })
             }
           />
+
         </Section>
       </TableView>
     </ScrollView>

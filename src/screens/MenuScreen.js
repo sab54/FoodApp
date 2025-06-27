@@ -1,4 +1,7 @@
+// Import core React functionality and hooks
 import React, { useState } from 'react';
+
+// Import standard components from React Native
 import {
   ScrollView,
   Image,
@@ -8,25 +11,33 @@ import {
   Modal,
   Pressable,
 } from 'react-native';
+
+// Import structured list components
 import { TableView, Section, Cell } from 'react-native-tableview-simple';
+
+// Import toast notifications for feedback on actions
 import Toast from 'react-native-toast-message';
 
+// Custom icon for vegetarian items (green dot inside box)
 const VegIcon = () => (
   <View style={styles.vegIcon}>
     <View style={styles.vegDot} />
   </View>
 );
 
+// Custom icon for non-vegetarian items (brown triangle inside box)
 const NonVegIcon = () => (
   <View style={styles.nonVegIcon}>
     <View style={styles.nonVegTriangle} />
   </View>
 );
 
+// Main menu screen displaying categorized dish lists
 export default function MenuScreen({ route }) {
-  const { items } = route.params;
-  const [selectedItem, setSelectedItem] = useState(null);
+  const { items } = route.params; // Extract menu sections passed from Home
+  const [selectedItem, setSelectedItem] = useState(null); // Handle selected item state
 
+  // Triggered when 'Add to Basket' is pressed
   const handleAddToBasket = () => {
     Toast.show({
       type: 'success',
@@ -34,11 +45,12 @@ export default function MenuScreen({ route }) {
       text2: `${selectedItem?.title} has been added`,
       visibilityTime: 2000,
     });
-    setSelectedItem(null);
+    setSelectedItem(null); // Close modal after action
   };
 
   return (
     <>
+      {/* Scrollable menu display */}
       <ScrollView>
         <TableView>
           {items.map((section, index) => (
@@ -50,6 +62,7 @@ export default function MenuScreen({ route }) {
                   onPress={() => item.inStock && setSelectedItem(item)}
                   cellContentView={
                     <View style={[styles.row, !item.inStock && styles.disabledRow]}>
+                      {/* Dish image thumbnail */}
                       {item.image && (
                         <Image
                           source={item.image}
@@ -62,6 +75,7 @@ export default function MenuScreen({ route }) {
                       )}
                       <View>
                         <View style={styles.titleRow}>
+                          {/* Veg/Non-Veg indicator */}
                           {item.type === 'veg' && <VegIcon />}
                           {item.type === 'nonveg' && <NonVegIcon />}
                           <View style={styles.titleColumn}>
@@ -87,6 +101,7 @@ export default function MenuScreen({ route }) {
           ))}
         </TableView>
 
+        {/* Item detail modal on selection */}
         <Modal
           visible={!!selectedItem}
           transparent
@@ -95,6 +110,7 @@ export default function MenuScreen({ route }) {
         >
           <View style={styles.modalBackdrop}>
             <View style={styles.modalContent}>
+              {/* Close button */}
               <Pressable
                 style={styles.modalCloseIcon}
                 onPress={() => setSelectedItem(null)}
@@ -102,6 +118,7 @@ export default function MenuScreen({ route }) {
                 <Text style={styles.modalCloseText}>×</Text>
               </Pressable>
 
+              {/* Enlarged image preview */}
               {selectedItem?.image && (
                 <Image
                   source={selectedItem.image}
@@ -109,15 +126,16 @@ export default function MenuScreen({ route }) {
                   resizeMode="cover"
                 />
               )}
+
+              {/* Modal content display */}
               <Text style={styles.modalTitle}>{selectedItem?.title}</Text>
               <Text style={styles.modalText}>
-                {selectedItem?.type === 'veg'
-                  ? 'Vegetarian'
-                  : 'Non-Vegetarian'}
+                {selectedItem?.type === 'veg' ? 'Vegetarian' : 'Non-Vegetarian'}
               </Text>
               <Text style={styles.modalText}>
                 £{selectedItem?.price || 'N/A'}
               </Text>
+
               <Pressable style={styles.basketButton} onPress={handleAddToBasket}>
                 <Text style={styles.basketText}>Add to Basket</Text>
               </Pressable>
@@ -125,11 +143,14 @@ export default function MenuScreen({ route }) {
           </View>
         </Modal>
       </ScrollView>
+
+      {/* Required toast container for feedback messages */}
       <Toast />
     </>
   );
 }
 
+// Component-scoped styles for layout and UI elements
 const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
