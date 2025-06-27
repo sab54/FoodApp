@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import {
   View,
   Text,
   Image,
   StyleSheet,
   Dimensions,
+  TouchableOpacity,
 } from 'react-native';
 import { Cell } from 'react-native-tableview-simple';
 
-// Get screen width (static, not reactive to rotation)
 const { width } = Dimensions.get('window');
 
 export default function HomeScreenCell(props) {
+  const [liked, setLiked] = useState(false);
+  const toggleLike = () => setLiked(!liked);
+
   return (
     <Cell
       height={290}
@@ -20,6 +24,15 @@ export default function HomeScreenCell(props) {
       onPress={props.action}
       cellContentView={
         <View style={styles.container}>
+          <View style={styles.heartContainer}>
+            <TouchableOpacity onPress={toggleLike}>
+              <Icon
+                name="heart"
+                size={24}
+                color={liked ? 'red' : '#ccc'}
+              />
+            </TouchableOpacity>
+          </View>
           <Image source={props.imgUri} style={styles.image} />
           <View style={styles.etaBox}>
             <Text style={styles.etaText}>
@@ -28,6 +41,7 @@ export default function HomeScreenCell(props) {
             </Text>
           </View>
           <Text style={styles.title}>{props.title}</Text>
+          <Text style={styles.rating}>{props.rating}</Text>
           <Text style={styles.subtitle}>{props.tagline}</Text>
         </View>
       }
@@ -38,7 +52,7 @@ export default function HomeScreenCell(props) {
 const styles = StyleSheet.create({
   container: {
     alignSelf: 'center',
-    width: width - 20,
+    width: width - 30,
     height: 290,
     backgroundColor: 'transparent',
   },
@@ -73,5 +87,21 @@ const styles = StyleSheet.create({
     color: '#666',
     marginTop: 10,
     marginLeft: 10,
+  },
+  rating: {
+    fontSize: 16,
+    color: '#888',
+    marginLeft: 10,
+    marginTop: 4,
+  },
+  heartContainer: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    zIndex: 1,
+    backgroundColor: '#fff',
+    borderRadius: 20,
+    padding: 5,
+    elevation: 3,
   },
 });
