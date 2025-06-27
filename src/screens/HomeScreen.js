@@ -190,7 +190,7 @@ export default function HomeScreen({ navigation }) {
                       },
                       {
                         title: 'BBQ Chicken Pizza',
-                        image: require('../../src/assets/images/bbq-chicken-pizza.jpeg'),
+                        image: require('../../src/assets/images/BBQ-chicken-pizza.jpeg'),
                         inStock: false,
                         type: 'nonveg',
                         price: 15.00,
@@ -202,7 +202,7 @@ export default function HomeScreen({ navigation }) {
                     contents: [
                       {
                         title: 'Paneer Tikka Pizza',
-                        image: require('../../src/assets/images/paneer-pizza.jpeg'),
+                        image: require('../../src/assets/images/Paneer-pizza.jpeg'),
                         inStock: false,
                         type: 'veg',
                         price: 9.50,
